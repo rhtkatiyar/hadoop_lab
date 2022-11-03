@@ -1,0 +1,19 @@
+question 1
+
+Assignment_4/MST
+
+to run:
+$bash run.sh
+provide inputfile name
+and
+eta value
+
+
+question 2
+
+to run
+$bash run.sh
+provide inputfile name
+provide eta value
+provide alpa value
+provide t value

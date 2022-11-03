@@ -1,0 +1,30 @@
+import java.io.IOException;
+import java.util.*;
+import org.apache.hadoop.fs.*;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+
+public static class MSTMapper extends Mapper<Object, Text, IntWritable, Text>
+{
+	public void map(Object key, Text value, Context context)	throws IOException, InterruptedException
+	{
+		Text srcDestPair = new Text();
+		//StringTokenizer itr = new StringTokenizer(value.toString());
+		String []inputTokens = value.toString().split("\t");  
+		String weight = inputTokens[0] ;
+		// get the weight
+		int wt = Integer.parseInt(weight);
+		IntWritable iwWeight = new IntWritable(wt);
+		// setting the source and destination to the key value
+		srcDestPair.set(inputTokens[1] + ":" + inputTokens[2]);
+		//write <key, value> to context where the key is the weight, and the value is the sourceDestinationPair
+		context.write(iwWeight,srcDestPair);
+
+			
+		}
+}
