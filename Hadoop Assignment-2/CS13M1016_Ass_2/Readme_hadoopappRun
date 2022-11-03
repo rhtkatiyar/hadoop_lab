@@ -1,0 +1,12 @@
+javac WordCount.java
+jar -cvf wc.jar *.class
+hadoop fs -copyFromLocal <inputfilepath> /
+hadoop jar <jar name> <main class name> /<inputfilename> /<outputfilename>
+hadoop fs -ls /outputfile
+hadoop fs -cat /outputfile/part-r-00000
+hadoop fs -rm -r /tmp
+hadoop fs -cat /some/where/on/hdfs/job-output/part-r-* > TheCombinedResultOfTheJob.txt
+hadoop fs -getmerge /outp1/part-r* file.txt
+
+
+
